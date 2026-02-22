@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="sr">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>Galerija</title>
+	<style>
+		@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+		.gallery-container{max-width:760px;margin:40px auto;padding:0 16px;animation:fadeIn 1.2s ease-in}
+		.gallery{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+		.gallery img{display:block;border-radius:6px;object-fit:cover;transition:all .2s ease;animation:fadeIn 0.8s ease-in}
+		.gallery img.big{width:90%;max-width:100%;height:auto;box-shadow:0 6px 22px rgba(0,0,0,.15)}
+		.gallery img.small{width:25%;max-width:100%;height:auto;cursor:pointer;opacity:.9}
+		.gallery img.small:hover{opacity:1}
+		@media (max-width:480px){.gallery img.small{width:90%}}
+	</style>
+</head>
+<body>
+
+	<main class="gallery-container">
+		<h1>Galerija — klikni manju sliku</h1>
+		<div class="gallery" aria-live="polite">
+			<img src="images/aefi.jpg" class="big" alt="Slika 1">
+			<img src="images/aefi2 (1).jpg" class="small" alt="Slika 2">
+		</div>
+	</main>
+
+	<script>
+		(function(){
+			const gallery = document.querySelector('.gallery');
+			if(!gallery) return;
+			gallery.addEventListener('click', (e)=>{
+				const target = e.target;
+				if(target.tagName !== 'IMG') return;
+				const big = gallery.querySelector('.big');
+				const small = gallery.querySelector('.small');
+				if(!big || !small) return;
+				// if clicked the big already, still swap (so user can toggle)
+				// Swap DOM order so the clicked image moves to the other place
+				if(small && big){
+					// move small before big (this will put the currently-small image on top)
+					gallery.insertBefore(small, big);
+					// swap classes
+					big.classList.replace('big','small');
+					small.classList.replace('small','big');
+				}
+			});
+		})();
+	</script>
+
+</body>
+</html>

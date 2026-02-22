@@ -1,0 +1,171 @@
+ * {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+ }
+
+
+ .preloader {
+   position: fixed;
+   inset: 0;
+   background: #fff;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   z-index: 9999;
+   transition: opacity .4s ease;
+ }
+
+
+ .logo-wrap {
+   width: 400px;
+   position: relative;
+ }
+
+
+ /* BASE LOGO – uvek tu sa 50% opacity */
+ .logo-base {
+   width: 100%;
+   opacity: 0.5;
+   display: block;
+   animation: baseFade 1.6s cubic-bezier(.22, .9, .26, 1) forwards;
+ }
+
+
+ /* FILL LAYER - puni se s leva na desno sa 100% opacity */
+ /* FILL LAYER - koristi SVG wave mask; sporija i glatkija animacija */
+ .logo-fill {
+   position: absolute;
+   inset: 0;
+   width: 100%;
+   height: 100%;
+   pointer-events: none;
+   display: block;
+ }
+
+
+ .fill-svg {
+   width: 100%;
+   height: 100%;
+   display: block;
+ }
+
+
+ @keyframes waveScale {
+   from {
+     transform: scaleX(0);
+   }
+
+   to {
+     transform: scaleX(1);
+   }
+ }
+
+
+ @keyframes baseFade {
+   from {
+     opacity: 0.5;
+   }
+
+   to {
+     opacity: 0;
+   }
+ }
+
+
+ .wave-group {
+   transform-box: fill-box;
+   transform-origin: 0 0;
+   animation: waveScale 1.6s cubic-bezier(.22, .9, .26, 1) forwards;
+ }
+
+
+ /* Reveal rect ensures full logo is visible at animation end */
+ .reveal-rect {
+   transform-box: fill-box;
+   transform-origin: 0 0;
+   transform: scaleX(0);
+   animation: reveal 1.6s cubic-bezier(.22, .9, .26, 1) forwards;
+ }
+
+
+ @keyframes reveal {
+   from {
+     transform: scaleX(0);
+   }
+
+   to {
+     transform: scaleX(1);
+   }
+ }
+
+
+ .logo-fill image {
+   filter: brightness(0) saturate(100%) invert(39%) sepia(89%) saturate(1356%) hue-rotate(191deg) brightness(95%) contrast(101%);
+ }
+
+ .kontejner {
+   width: 60%;
+   margin-left: 20%;
+ }
+
+ .kontejner {
+   padding-bottom: 50px;
+ }
+
+ .filterDiv {
+   display: none;
+ }
+
+ .show {
+   display: block;
+ }
+
+ .buttonbtu.active {
+   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+ }
+
+ .gallery-container {
+   max-width: 760px;
+   margin: 40px auto;
+   padding: 0 16px
+ }
+
+ .gallery {
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   gap: 12px
+ }
+
+ .gallery img {
+   display: block;
+   border-radius: 6px;
+   object-fit: cover;
+   transition: all .2s ease
+ }
+
+ .gallery img.big {
+   width: 90%;
+   max-width: 100%;
+   height: auto;
+ }
+
+ .gallery img.small {
+   width: 25%;
+   max-width: 100%;
+   height: auto;
+   cursor: pointer;
+   opacity: .9
+ }
+
+ .gallery img.small:hover {
+   opacity: 1
+ }
+
+ @media (max-width:480px) {
+   .gallery img.small {
+     width: 20%
+   }
+ }
