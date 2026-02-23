@@ -134,7 +134,7 @@
               </mask>
 
               <!-- mask that shapes the logo using the raster image's alpha -->
-              <mask id="logoMask">
+              <mask id="logoMask" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" mask-type="alpha">
                 <image xlink:href="bocevica-logo.png" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" />
               </mask>
             </defs>
@@ -145,8 +145,7 @@
                 <rect x="0" y="0" width="100%" height="100%" fill="#0b71d0"></rect>
               </g>
             </g>
-          <image href="bocevica-logo.png" xlink:href="bocevica-logo.png" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet"
-            mask="url(#waveMask)"></image>
+          <!-- removed direct image draw to avoid covering the colored fill; the blue rect is clipped to the logo shape -->
         </svg>
       </div>
     </div>
