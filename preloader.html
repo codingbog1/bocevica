@@ -1,168 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
- 
- <head>
-   <meta charset="UTF-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <title>Document</title>
- </head>
- <style>
-    * {
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
- }
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-
- .preloader {
-   position: fixed;
+.preloader {
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-   background: #fff;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   z-index: 9999;
-   transition: opacity .4s ease;
- }
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity .4s ease;
+}
 
+.logo-container {
+  width: 400px;
+  max-width: 80vw;
+  position: relative;
+}
 
- .logo-wrap {
-   width: 400px;
-   position: relative;
- }
+/* Bledi logo */
+.logo-base {
+  width: 100%;
+  opacity: 0.4;
+  display: block;
+  animation: fadeOut 1.6s cubic-bezier(.22,.9,.26,1) forwards;
+}
 
+/* Wrapper za punjenje */
+.logo-fill-wrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  width: 0%;
+  animation: reveal 1.6s cubic-bezier(.22,.9,.26,1) forwards;
+}
 
- /* BASE LOGO – uvek tu sa 50% opacity */
- .logo-base {
-   width: 100%;
-   opacity: 0.5;
-   display: block;
-   animation: baseFade 1.6s cubic-bezier(.22, .9, .26, 1) forwards;
- }
+/* Puni logo */
+.logo-fill {
+  width: 100%;
+  display: block;
+  filter: brightness(0) saturate(100%)
+    invert(39%) sepia(89%)
+    saturate(1356%)
+    hue-rotate(191deg)
+    brightness(95%)
+    contrast(101%);
+}
 
+@keyframes reveal {
+  from { width: 0%; }
+  to { width: 100%; }
+}
 
- /* FILL LAYER - puni se s leva na desno sa 100% opacity */
- /* FILL LAYER - koristi SVG wave mask; sporija i glatkija animacija */
- .logo-fill {
-   position: absolute;
-   inset: 0;
-   width: 100%;
-   height: 100%;
-   pointer-events: none;
-   display: block;
- }
-
-
- .fill-svg {
-   width: 100%;
-   height: 100%;
-   display: block;
- }
-
-
- @keyframes waveScale {
-   from {
-     transform: scaleX(0);
-   }
-
-   to {
-     transform: scaleX(1);
-   }
- }
-
-
- @keyframes baseFade {
-   from {
-     opacity: 0.5;
-   }
-
-   to {
-     opacity: 0;
-   }
- }
-
-
- .wave-group {
-   transform-box: fill-box;
-   transform-origin: 0 0;
-   animation: waveScale 1.6s cubic-bezier(.22, .9, .26, 1) forwards;
- }
-
-
- /* Reveal rect ensures full logo is visible at animation end */
- .reveal-rect {
-   transform-box: fill-box;
-   transform-origin: 0 0;
-   transform: scaleX(0);
-   animation: reveal 1.6s cubic-bezier(.22, .9, .26, 1) forwards;
- }
-
-
- @keyframes reveal {
-   from {
-     transform: scaleX(0);
-   }
-
-   to {
-     transform: scaleX(1);
-   }
- }
-
-
- .logo-fill image {
-   filter: brightness(0) saturate(100%) invert(39%) sepia(89%) saturate(1356%) hue-rotate(191deg) brightness(95%) contrast(101%);
- }
-
+@keyframes fadeOut {
+  from { opacity: 0.4; }
+  to { opacity: 0; }
+}
 </style>
- <body>
-    <div class="preloader">
-    <div class="logo-wrap">
-      <img src="bocevica-logo.png" class="logo-base" alt="Bocevica" />
 
-      <div class="logo-fill" aria-hidden="true">
-        <svg class="fill-svg" viewBox="0 0 260 260" preserveAspectRatio="xMidYMid meet"
-          xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
-          <defs>
-            <mask id="waveMask">
-              <rect width="100%" height="100%" fill="black" />
-              <rect class="reveal-rect" x="0" y="0" width="100%" height="100%" fill="white" />
-              <g class="wave-group" fill="white">
-                <path
-                  d="M-40 140 C0 120 40 160 80 140 C120 120 160 160 200 140 C240 120 280 160 320 140 L320 260 L-40 260 Z" />
-              </g>
-            </mask>
-          </defs>
-          <image xlink:href="Bocevica-logo.png"
-       x="0"
-       y="0"
-       width="100%"
-       height="100%"
-       preserveAspectRatio="xMidYMid meet"
-       mask="url(#waveMask)">
-</image>
-        </svg>
-      </div>
+<div class="preloader">
+  <div class="logo-container">
+    <img src="Bocevica-logo.png" class="logo-base" alt="Logo">
+
+    <div class="logo-fill-wrapper">
+      <img src="Bocevica-logo.png" class="logo-fill" alt="">
     </div>
-
-
   </div>
-  wwwwwwwwwwwwwwwwwwww
-  <script>
-    window.addEventListener("load", function () {
-      const preloader = document.querySelector(".preloader");
-      setTimeout(() => {
-        preloader.style.opacity = "0";
-        setTimeout(() => {
-          preloader.style.display = "none";
-        }, 400);
-      }, 1600);
-    });
-  </script>
- </body>
+</div>
 
-</html>
+<script>
+window.addEventListener("load", function() {
+  const preloader = document.querySelector(".preloader");
 
-
+  setTimeout(function() {
+    preloader.style.opacity = "0";
+    setTimeout(function() {
+      preloader.style.display = "none";
+    }, 400);
+  }, 1600);
+});
+</script>
