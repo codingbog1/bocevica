@@ -112,7 +112,14 @@
  .logo-fill image {
    filter: brightness(0) saturate(100%) invert(39%) sepia(89%) saturate(1356%) hue-rotate(191deg) brightness(95%) contrast(101%);
  }
+.fill-svg {
+  -webkit-mask-type: luminance;
+}
 
+.wave-group,
+.reveal-rect {
+  will-change: transform;
+}
 </style>
  <body>
     <div class="preloader">
@@ -120,36 +127,53 @@
       <img src="bocevica-logo.png" class="logo-base" alt="Bocevica" />
 
       <div class="logo-fill" aria-hidden="true">
-        <svg class="fill-svg" viewBox="0 0 260 260" preserveAspectRatio="xMidYMid meet"
-          xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
-          <defs>
-            <mask id="waveMask">
-              <rect width="100%" height="100%" fill="black" />
-              <rect class="reveal-rect" x="0" y="0" width="100%" height="100%" fill="white" />
-              <g class="wave-group" fill="white">
-                <path
-                  d="M-40 140 C0 120 40 160 80 140 C120 120 160 160 200 140 C240 120 280 160 320 140 L320 260 L-40 260 Z" />
-              </g>
-            </mask>
-          </defs>
-          <image href="Bocevica-logo.png" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet"
-            mask="url(#waveMask)"></image>
-        </svg>
+        <div class="logo-fill" aria-hidden="true">
+  <svg class="fill-svg"
+       viewBox="0 0 260 260"
+       preserveAspectRatio="xMidYMid meet"
+       xmlns="http://www.w3.org/2000/svg"
+       xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <defs>
+      <mask id="waveMask" maskUnits="userSpaceOnUse">
+        <rect width="100%" height="100%" fill="black"/>
+        <rect class="reveal-rect"
+              x="0" y="0"
+              width="100%" height="100%"
+              fill="white"/>
+        <g class="wave-group" fill="white">
+          <path d="M-40 140 C0 120 40 160 80 140 C120 120 160 160 200 140 C240 120 280 160 320 140 L320 260 L-40 260 Z"/>
+        </g>
+      </mask>
+    </defs>
+
+    <image xlink:href="Bocevica-logo.png"
+           x="0"
+           y="0"
+           width="100%"
+           height="100%"
+           preserveAspectRatio="xMidYMid meet"
+           mask="url(#waveMask)">
+    </image>
+
+  </svg>
+</div>
       </div>
     </div>
 
 
   </div>
   <script>
-    window.addEventListener("load", function () {
-      const preloader = document.querySelector(".preloader");
-      setTimeout(() => {
-        preloader.style.opacity = "0";
-        setTimeout(() => {
-          preloader.style.display = "none";
-        }, 400);
-      }, 1600);
-    });
+    window.addEventListener("load", () => {
+  const preloader = document.querySelector(".preloader");
+  setTimeout(() => {
+    preloader.style.opacity = "0";
+    setTimeout(() => {
+      preloader.style.display = "none";
+    }, 400);
+  }, 1600);
+});
   </script>
  </body>
 </html>
+
