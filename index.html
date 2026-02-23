@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <title>Frigo Servis Boćevica</title>
-  <link rel="stylesheet" href="style.css" type="text/css" />
+ 
   <meta content="width=device-width, initial-scale=1" name="viewport" />
   <link
     href="https://cdn.prod.website-files.com/698870398b240e4477ec6e8b/css/bogdans-fantabulous-site-d2dede.webflow.shared.ea98dd3b9.css"
@@ -24,28 +24,41 @@
   <script
     type="text/javascript">!function (o, c) { var n = c.documentElement, t = " w-mod-"; n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch") }(window, document);</script>
   <link rel="icon" type="image/x-icon" href="images/bocevica-logo.png">
+  
+   <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
-
 <body class="body">
-  <div class="preloader">
+   <div class="preloader">
     <div class="logo-wrap">
       <img src="bocevica-logo.png" class="logo-base" alt="Bocevica" />
 
       <div class="logo-fill" aria-hidden="true">
         <svg class="fill-svg" viewBox="0 0 260 260" preserveAspectRatio="xMidYMid meet"
-          xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" aria-hidden="true">
           <defs>
-            <mask id="waveMask">
-              <rect width="100%" height="100%" fill="black" />
-              <rect class="reveal-rect" x="0" y="0" width="100%" height="100%" fill="white" />
-              <g class="wave-group" fill="white">
-                <path
-                  d="M-40 140 C0 120 40 160 80 140 C120 120 160 160 200 140 C240 120 280 160 320 140 L320 260 L-40 260 Z" />
+              <!-- mask that reveals the wave sweep -->
+              <mask id="waveMask">
+                <rect width="100%" height="100%" fill="black" />
+                <rect class="reveal-rect" x="0" y="0" width="100%" height="100%" fill="white" />
+                <g class="wave-group" fill="white">
+                  <path
+                    d="M-40 140 C0 120 40 160 80 140 C120 120 160 160 200 140 C240 120 280 160 320 140 L320 260 L-40 260 Z" />
+                </g>
+              </mask>
+
+              <!-- mask that shapes the logo using the raster image's alpha -->
+              <mask id="logoMask" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" mask-type="alpha">
+                <image xlink:href="bocevica-logo.png" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" />
+              </mask>
+            </defs>
+
+            <!-- Draw a solid blue rectangle, clip it to the logo shape, then reveal it with the wave mask -->
+            <g mask="url(#waveMask)">
+              <g mask="url(#logoMask)">
+                <rect x="0" y="0" width="100%" height="100%" fill="#0b71d0"></rect>
               </g>
-            </mask>
-          </defs>
-          <image href="Bocevica-logo.png" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet"
-            mask="url(#waveMask)"></image>
+            </g>
+          <!-- removed direct image draw to avoid covering the colored fill; the blue rect is clipped to the logo shape -->
         </svg>
       </div>
     </div>
@@ -57,7 +70,7 @@
     data-poster-url="https://cdn.prod.website-files.com/698870398b240e4477ec6e8b%2F698f1dc5ccf3fbd547b68c8c_vecteezy_technician-finishes-repairing-or-mounting-the-air_75973812_poster.0000000.jpg"
     data-video-urls="https://cdn.prod.website-files.com/698870398b240e4477ec6e8b%2F698f1dc5ccf3fbd547b68c8c_vecteezy_technician-finishes-repairing-or-mounting-the-air_75973812_mp4.mp4,https://cdn.prod.website-files.com/698870398b240e4477ec6e8b%2F698f1dc5ccf3fbd547b68c8c_vecteezy_technician-finishes-repairing-or-mounting-the-air_75973812_webm.webm"
     data-autoplay="true" data-loop="true" data-wf-ignore="true"
-    class="background-video w-background-video w-background-video-atom"><video
+    class="background-video w-background-video w-background-video-atom" ><video
       id="aff82309-9127-6f6d-6fe5-6bb711a24023-video" autoplay="" loop=""
       style="background-image:url(&quot;https://cdn.prod.website-files.com/698870398b240e4477ec6e8b%2F698f1dc5ccf3fbd547b68c8c_vecteezy_technician-finishes-repairing-or-mounting-the-air_75973812_poster.0000000.jpg&quot;)"
       muted="" playsinline="" data-wf-ignore="true" data-object-fit="cover">
@@ -76,7 +89,7 @@
             <div class="icon w-icon-nav-menu"></div>
           </div>
           <nav role="navigation" class="nav-menu w-nav-menu">
-            <a href="index.html" class="navlink w-nav-link"style="color: white;">Početna</a>
+            <a href="index.html" class="navlink w-nav-link">Početna</a>
             <a href="materijal-za-ugradnju-klima.html" class="navlink w-nav-link">Materijal za ugranju klima</a>
             <a href="toplotne-pumpe" class="navlink w-nav-link">Toplotne pumpe</a><a href="prodaja-klima.html"
               class="navlink w-nav-link">Prodaja klima</a>
